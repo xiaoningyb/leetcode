@@ -16,6 +16,21 @@ const int roman_int[]      = { 1,   5,   10,   50,   100,   500,   1000};
   Input is guaranteed to be within the range from 1 to 3999.
 */
 
+int getRomanValue(char c)
+{
+    switch(c)
+    {  
+    case 'I': return 1;   
+    case 'V': return 5;  
+    case 'X': return 10;  
+    case 'L': return 50;  
+    case 'C': return 100;  
+    case 'D': return 500;  
+    case 'M': return 1000;  
+    default: return 0;  
+    }  
+}  
+
 int romanToInt(string s)
 {
     int ret = 0;
@@ -106,6 +121,22 @@ string intToRoman(int num)
     return ret;
 }
 
+
+ string intToRoman2(int number)
+ {  
+     int values[] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };  
+     string numerals[] = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };  
+     string result;
+     for (int i = 0; i < sizeof(values)/sizeof(int); i++)
+     {  
+         while (number >= values[i]) {  
+             number -= values[i];  
+             result.append(numerals[i]);  
+         }  
+     }  
+     return result;  
+ }  
+
 int main()
 {
     cout<<intToRoman(1)<<endl;
@@ -117,9 +148,9 @@ int main()
     cout<<intToRoman(7)<<endl;
     cout<<intToRoman(8)<<endl;
     cout<<intToRoman(9)<<endl;
-    cout<<intToRoman(10)<<endl;
+    cout<<intToRoman2(10)<<endl;
 
-    cout<<intToRoman(3999)<<endl;
+    cout<<intToRoman2(3999)<<endl;
 
 
     cout<<romanToInt("I")<<endl;
