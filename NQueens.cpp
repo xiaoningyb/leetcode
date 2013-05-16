@@ -228,19 +228,7 @@ int totalNQueens(int n)
 
 int main()
 {
-    
-    
-    vector< vector<string> > ret = solveNQueens(8);
-    cout<<"========resolve the Queens======"<<endl;
-    
-    for(int i = 0; i < ret.size(); ++i)
-    {
-        print(ret[i]);
-    }
-
-    cout<<"totol solution = "<< ret.size()<<endl;
-
-    cout <<"totol solution = "<< totalNQueens(12) <<endl;
+    cout <<"totol solution = "<< totalNQueens(16) <<endl;
     
     return 0;
 }
