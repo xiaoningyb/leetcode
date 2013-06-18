@@ -65,6 +65,42 @@ vector<vector<int> > threeSum(vector<int> &num)
     
     return vector<vector<int> >(ret.begin(), ret.end());
 }
+
+int threeSumClosest(vector<int> &num, int target)
+{
+    int closest = num[0] + num[1] + num[2] ;
+    std::sort(num.begin(), num.end());
+    
+    for(int i = 0; i < num.size() - 2; ++i)
+    { 
+        int low = i + 1;
+        int high = num.size() - 1;
+        
+        while(low < high)
+        {
+            int sum = (num[i] + num[low] + num[high]);
+            if(abs(sum - target) < abs(closest - target))
+            {
+                closest = sum;
+            }
+            
+            if(sum == target)
+            {
+                return target;
+            }
+            else if ( sum < target )
+            {
+                ++low;
+            }
+            else
+            {
+                --high;
+            }
+        }
+    }
+    
+    return closest;    
+}
     
 void print_result(const vector<vector<int> >& ret)
 {
