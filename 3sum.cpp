@@ -25,18 +25,21 @@ using namespace std;
 
 */
 
-vector<vector<int> > threeSum(vector<int> &num)
+ vector<vector<int> > threeSum(vector<int> &num)
 {
-    set<vector<int> > ret;
+    vector<vector<int> > ret;
 
     if(num.size() < 3)
-        return vector<vector<int> >(ret.begin(), ret.end());
+        return vector<vector<int> >();
+        
     vector<int> sub_result(3, 0);
         
     std::sort(num.begin(), num.end());
     
     for(int i = 0; i < num.size() - 2; ++i)
     { 
+        if(i && (num[i] == num[i-1])) // cut off
+            continue;
         int low = i + 1;
         int high = num.size() - 1;
         
@@ -48,7 +51,7 @@ vector<vector<int> > threeSum(vector<int> &num)
                 sub_result[0] = num[i];
                 sub_result[1] = num[low];
                 sub_result[2] = num[high];
-                ret.insert(sub_result);
+                ret.push_back(sub_result);
                 ++low;
                 --high;
             }
@@ -63,7 +66,8 @@ vector<vector<int> > threeSum(vector<int> &num)
         }
     }
     
-    return vector<vector<int> >(ret.begin(), ret.end());
+    ret.erase(unique(ret.begin(), ret.end()), ret.end()); 
+    return ret;
 }
 
 int threeSumClosest(vector<int> &num, int target)
